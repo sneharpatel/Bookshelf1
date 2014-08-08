@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Book.delete_all
+Cart.delete_all
+LineItem.delete_all
 
 Book.create(
     :title => 'Agile Web Development with Rails',

@@ -16,8 +16,11 @@ class Book < ActiveRecord::Base
 
   validate :discount_price_cannot_be_greater_than_original_price, allow_blank: true
 
+  has_many :line_items
+
+
   def discount_price_cannot_be_greater_than_original_price
-    if self.discount_price?
+    if self.discount_price? && self.price?
       if self.discount_price > self.price
         errors.add(:discount_price,"cannot be greater than original price")
       end
@@ -29,10 +32,4 @@ class Book < ActiveRecord::Base
       with: %r{\.(gif|jpg|png)\Z}i,
       message: 'must be a URL for GIF, JPG or PNG image.'
   }
-
- # validate :title_validate
- # def title_validate
-   # title.each {|key, value| title[key] = value.strip}
-  #end
-
 end

@@ -10,9 +10,14 @@
           <dl>
             <dt class="description_title"><%= book.title %></dt>
             <dd><%= truncate(strip_tags(book.description), length: 80) %></dd>
+            <% if book.discount_price == book.price %>
+                <dt class="book_free">price: Book is Free</dt>
+                <% else %>
             <dt class="price"> Price: <%=  number_to_currency(book.price) %></dt>
-            <dt class="discount_price"> Discount_price: <%= number_to_currency(book.discount_price) %></dt>
-
+            <% if book.discount_price != nil %>
+            <dt class="discount_price"> Discount Price: <%= number_to_currency(book.discount_price) %></dt>
+                <% end %>
+                <% end %>
           </dl>
         </td>
         <td class="list_actions">
